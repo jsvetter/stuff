@@ -218,3 +218,5 @@ __marimo__/
 
 # Misc
 .DS_Store
+assets/
+outputs/
