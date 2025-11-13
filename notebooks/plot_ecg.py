@@ -240,4 +240,5 @@ with plt.rc_context(fname="../matplotlibrc"):
     ax.scatter(res, ras, color=colors, s=10)
     ax.set_xticks([])
     ax.set_yticks([])
+    fig.savefig("../outputs/param_scatter.pdf", bbox_inches="tight", transparent=True)
     plt.show()
