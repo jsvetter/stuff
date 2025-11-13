@@ -153,3 +153,91 @@ with plt.rc_context(fname="../matplotlibrc"):
 
     fig.savefig("../outputs/spike_plot.pdf", bbox_inches="tight", transparent=True)
     plt.show()
+
+
+# %%
+synth_traces = []
+for i in range(2, 3):
+    with open(f"../assets/allen_support_files/synthetic_obs_{i}.pkl", "rb") as f:
+        trace = pickle.load(f)
+        synth_traces.append(trace["data"].flatten())
+
+with plt.rc_context(fname="../matplotlibrc"):
+    fig, ax = plt.subplots(figsize=(4, 2))
+
+    for trace in synth_traces:
+        ax.plot(trace, color="black")
+
+    ax.set_xticks([])
+    ax.set_yticks([])
+    x_lim_low, x_lim_high = ax.get_xlim()
+    y_lim_low, y_lim_high = ax.get_ylim()
+
+    ax.spines["left"].set_bounds(
+        low=y_lim_low, high=y_lim_low + (y_lim_high - y_lim_low) * 0.4
+    )
+    ax.spines["bottom"].set_bounds(
+        low=x_lim_low, high=x_lim_low + (x_lim_high - x_lim_low) * 0.2
+    )
+
+    fig.savefig(
+        "../outputs/synthetic_spike_plot.pdf", bbox_inches="tight", transparent=True
+    )
+    plt.show()
+
+# %%
+synth_traces = []
+for i in range(1, 9):
+    with open(f"../assets/allen_support_files/synthetic_obs_{i}.pkl", "rb") as f:
+        trace = pickle.load(f)
+        synth_traces.append(trace["data"].flatten())
+
+colors = [
+    "silver",
+    "dimgrey",
+    "slategrey",
+    "darkslategrey",
+    "grey",
+    "black",
+    "lightslategrey",
+    "darkgray",
+]
+
+
+with plt.rc_context(fname="../matplotlibrc"):
+    fig, ax = plt.subplots(figsize=(4, 2))
+
+    for trace, color in zip(synth_traces, colors):
+        ax.plot(trace, color=color)
+
+    ax.set_xticks([])
+    ax.set_yticks([])
+    x_lim_low, x_lim_high = ax.get_xlim()
+    y_lim_low, y_lim_high = ax.get_ylim()
+
+    ax.spines["left"].set_bounds(
+        low=y_lim_low, high=y_lim_low + (y_lim_high - y_lim_low) * 0.4
+    )
+    ax.spines["bottom"].set_bounds(
+        low=x_lim_low, high=x_lim_low + (x_lim_high - x_lim_low) * 0.2
+    )
+
+    fig.savefig(
+        "../outputs/synthetic_spikes_plot.pdf", bbox_inches="tight", transparent=True
+    )
+    plt.show()
+
+
+# %%
+np.random.seed(0)
+res = np.random.uniform(0, 1, size=8)
+ras = np.random.uniform(0, 1, size=8)
+
+
+with plt.rc_context(fname="../matplotlibrc"):
+    fig, ax = plt.subplots(figsize=(2.5, 2.5))
+
+    ax.scatter(res, ras, color=colors, s=10)
+    ax.set_xticks([])
+    ax.set_yticks([])
+    plt.show()
